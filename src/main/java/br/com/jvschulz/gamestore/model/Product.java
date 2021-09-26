@@ -14,14 +14,13 @@ public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public long id;
+	private long id;
 
 	@Column(nullable = false)
-	public String name;
-
-	public BigDecimal price;
-	public short score;
-	public String image;
+	private String name;
+	private BigDecimal price;
+	private short score;
+	private String image;
 
 	public long getId() {
 		return id;
