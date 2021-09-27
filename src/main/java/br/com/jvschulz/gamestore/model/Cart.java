@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 public class Cart {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	private BigDecimal subTotal;
