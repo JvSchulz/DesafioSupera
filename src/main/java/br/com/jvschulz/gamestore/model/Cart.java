@@ -11,15 +11,15 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Cart {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private long id;
-	
+
 	private BigDecimal subTotal;
 	private BigDecimal shippingFee;
 	private BigDecimal totalValue;
-	
+
 	@OneToMany(mappedBy = "cart")
 	private List<ItemOrder> orderList;
 
@@ -69,30 +69,38 @@ public class Cart {
 	}
 
 	public void subTotal(List<ItemOrder> orders) {
-		for(ItemOrder order:orders) {
-		this.subTotal.add(order.getTotalPrice());
+		this.subTotal = BigDecimal.ZERO;
+		for (ItemOrder order : orders) {
+			this.subTotal = (order.getTotalPrice().add(subTotal));
 		}
 	}
-	
+
 	public void shipping(List<ItemOrder> orders) {
-		
-		for(@SuppressWarnings("unused") ItemOrder order:orders) {
-			this.shippingFee.add(BigDecimal.valueOf(10));
+		this.shippingFee = BigDecimal.ZERO;
+		for (@SuppressWarnings("unused")
+		ItemOrder order : orders) {
+			this.shippingFee = BigDecimal.valueOf(10).add(shippingFee);
 		}
 	}
-	
+
 	public void totalValue() {
-		if(this.subTotal.compareTo(BigDecimal.valueOf(250))==1 || this.subTotal.compareTo(BigDecimal.valueOf(250))==0) {
-			this.shippingFee.subtract(shippingFee);
-			this.totalValue.add(subTotal);
+		if (this.subTotal.compareTo(BigDecimal.valueOf(250)) >= 0 ) {
+			this.shippingFee = BigDecimal.ZERO;
+			this.totalValue = subTotal;
+		} else {
+			this.totalValue = subTotal;
+			this.totalValue = this.shippingFee.add(totalValue);
 		}
-		else {
-			this.totalValue.add(subTotal);
-			this.totalValue.add(shippingFee);
-		}
-		
+
 	}
 	
+	public void refresh(List<ItemOrder> orders) {
+		shipping(orders);
+		subTotal(orders);
+		totalValue();
+		
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -104,6 +112,5 @@ public class Cart {
 		Cart other = (Cart) obj;
 		return id == other.id;
 	}
-	
-	
+
 }

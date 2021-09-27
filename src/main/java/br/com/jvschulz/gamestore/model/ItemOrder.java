@@ -1,6 +1,5 @@
 package br.com.jvschulz.gamestore.model;
 
-
 import java.math.BigDecimal;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -13,24 +12,24 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class ItemOrder {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	@Column(nullable =  false)
+
+	@Column(nullable = false)
 	private int quantity;
 	private BigDecimal unitPrice;
 	private BigDecimal totalPrice;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "cart_id")
 	private Cart cart;
-	
+
 	public long getId() {
 		return id;
 	}
@@ -51,11 +50,9 @@ public class ItemOrder {
 		return unitPrice;
 	}
 
-
 	public BigDecimal getTotalPrice() {
 		return totalPrice;
 	}
-
 
 	public Product getProduct() {
 		return product;
@@ -64,11 +61,11 @@ public class ItemOrder {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	
+
 	public void unitPrice(Product product) {
 		this.unitPrice = product.getPrice();
 	}
-	
+
 	public void totalPrice() {
 		this.totalPrice = this.unitPrice.multiply(BigDecimal.valueOf(quantity));
 	}
@@ -89,6 +86,5 @@ public class ItemOrder {
 		ItemOrder other = (ItemOrder) obj;
 		return id == other.id;
 	}
-	
-	
+
 }

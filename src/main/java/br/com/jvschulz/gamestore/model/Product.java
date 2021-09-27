@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Product {
 
@@ -21,14 +20,14 @@ public class Product {
 
 	@Column(nullable = false)
 	private String name;
-	
+
 	private BigDecimal price;
 	private short score;
 	private String image;
 
 	@OneToMany(mappedBy = "product")
 	private List<ItemOrder> order;
-	
+
 	public long getId() {
 		return id;
 	}
