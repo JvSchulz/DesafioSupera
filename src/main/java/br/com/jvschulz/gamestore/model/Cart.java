@@ -82,8 +82,8 @@ public class Cart {
 	}
 	
 	public void totalValue() {
+		if(this.subTotal.compareTo(BigDecimal.valueOf(250))==1 || this.subTotal.compareTo(BigDecimal.valueOf(250))==0) {
 			this.shippingFee.subtract(shippingFee);
-			if(this.subTotal.compareTo(BigDecimal.valueOf(250))==1 || this.subTotal.compareTo(BigDecimal.valueOf(250))==0) {
 			this.totalValue.add(subTotal);
 		}
 		else {
