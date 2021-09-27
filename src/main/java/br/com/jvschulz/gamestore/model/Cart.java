@@ -3,11 +3,11 @@ package br.com.jvschulz.gamestore.model;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cart {
@@ -20,7 +20,7 @@ public class Cart {
 	private BigDecimal shippingFee;
 	private BigDecimal totalValue;
 	
-	@Column(nullable = false)
+	@OneToMany(mappedBy = "cart")
 	private List<ItemOrder> orderList;
 
 	public long getId() {

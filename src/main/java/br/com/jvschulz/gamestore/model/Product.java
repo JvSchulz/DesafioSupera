@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Product {
@@ -18,10 +19,14 @@ public class Product {
 
 	@Column(nullable = false)
 	private String name;
+	
 	private BigDecimal price;
 	private short score;
 	private String image;
 
+	@OneToOne(mappedBy = "product")
+	private ItemOrder order;
+	
 	public long getId() {
 		return id;
 	}

@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ItemOrder {
@@ -21,9 +24,14 @@ public class ItemOrder {
 	private BigDecimal unitPrice;
 	private BigDecimal totalPrice;
 	
-	@Column(nullable =  false)
+	@OneToOne
+	@JoinColumn(name = "product_id")
 	private Product product;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "cart_id")
+	private Cart cart;
+	
 	public long getId() {
 		return id;
 	}
