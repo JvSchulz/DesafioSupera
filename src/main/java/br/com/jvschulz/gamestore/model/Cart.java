@@ -68,6 +68,31 @@ public class Cart {
 		return Objects.hash(id);
 	}
 
+	public void subTotal(List<ItemOrder> orders) {
+		for(ItemOrder order:orders) {
+		this.subTotal.add(order.getTotalPrice());
+		}
+	}
+	
+	public void shipping(List<ItemOrder> orders) {
+		
+		for(@SuppressWarnings("unused") ItemOrder order:orders) {
+			this.shippingFee.add(BigDecimal.valueOf(10));
+		}
+	}
+	
+	public void totalValue() {
+			this.shippingFee.subtract(shippingFee);
+			if(this.subTotal.compareTo(BigDecimal.valueOf(250))==1 || this.subTotal.compareTo(BigDecimal.valueOf(250))==0) {
+			this.totalValue.add(subTotal);
+		}
+		else {
+			this.totalValue.add(subTotal);
+			this.totalValue.add(shippingFee);
+		}
+		
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
