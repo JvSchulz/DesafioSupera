@@ -1,6 +1,7 @@
 package br.com.jvschulz.gamestore.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,7 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class Product {
@@ -24,8 +26,8 @@ public class Product {
 	private short score;
 	private String image;
 
-	@OneToOne(mappedBy = "product")
-	private ItemOrder order;
+	@OneToMany(mappedBy = "product")
+	private List<ItemOrder> order;
 	
 	public long getId() {
 		return id;

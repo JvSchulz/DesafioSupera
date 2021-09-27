@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class ItemOrder {
@@ -24,7 +23,7 @@ public class ItemOrder {
 	private BigDecimal unitPrice;
 	private BigDecimal totalPrice;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
 	
@@ -52,17 +51,11 @@ public class ItemOrder {
 		return unitPrice;
 	}
 
-	public void setUnitPrice(BigDecimal unitPrice) {
-		this.unitPrice = unitPrice;
-	}
 
 	public BigDecimal getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(BigDecimal totalPrice) {
-		this.totalPrice = totalPrice;
-	}
 
 	public Product getProduct() {
 		return product;
@@ -70,6 +63,14 @@ public class ItemOrder {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+	
+	public void unitPrice(Product product) {
+		this.unitPrice = product.getPrice();
+	}
+	
+	public void totalPrice() {
+		this.totalPrice = this.unitPrice.multiply(BigDecimal.valueOf(quantity));
 	}
 
 	@Override
