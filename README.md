@@ -14,7 +14,7 @@ A API REST foi desenvolvida usando SpringBoot na versão JDK 11. A escolha do fr
 <!--te-->
 =================
 ## Como executar os testes
-Para subir a API e executar os metodos de get e post basta executar o comando abaixo, na pasta do projeto:
+Para subir a API e executar os metodos basta executar o comando abaixo, na pasta do projeto:
 ```sh
   java -jar gamestore-api-0.0.1-SNAPSHOT.jar
   ```
