@@ -1,4 +1,5 @@
 # DesafioSupera
+Esse projeto foi usado como base para um processo seletivo a onde tive 4 dias para pesquisar, implementar e publicar este repositório com o protótipo de API REST.
 
 ## Descrição do projeto
 O projeto consiste em construir a camada de serviço de um pseudo ecommerce de games mobile utilizando Java.
